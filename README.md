@@ -36,7 +36,7 @@ Quantum resistance:
 
 Note: C2 server is behind Tor and hosted with the official opsec recommendations
 
-Flow of the protocol
+# Flow of the protocol
 
 Phase 1 – Your Software (user side)
 - App is available on users device
