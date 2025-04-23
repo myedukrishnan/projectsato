@@ -2,7 +2,7 @@
 
 This project is way too big for me to do it myself - so i thought to just release this design.
 
-The smart contract has only two return functions:
+The smart contract has only two/three return functions:
 - Snapshot of the merkle tree to save for the client 
 - Insert/update .onion address
 - Insert/update contract address (must be the same logic as application)
