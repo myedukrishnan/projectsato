@@ -8,6 +8,8 @@ Disclaimer - obviously as there is no code yet, there is not much to say regardi
 
 # Architecture Diagram 
 
+NOTE: The diagram is slightly different than the text - as i improved it from the feedback i got.
+
 ![project-sato](https://github.com/user-attachments/assets/87438c8c-24c5-4f8f-89bc-d2b334becc31)
 
 
