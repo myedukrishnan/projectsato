@@ -132,6 +132,32 @@ Limitations:
 - Having millions of clients can raise red flags from the spike in Tor users. 
 - Higher gas fees if the number of clients go higher. Might be mitigated by mining cryptocurrencies in clients. 
 - No mining to fund the gas fees in the current source code.
+  
+# Threat model & OPSEC
+
+There are many ways to skin a cat. This is only one of them. No design covers every use case. Adjust your threat model & opsec where necessary. For example, if your company doesn't accept Tor connections at all - then you will have to get creative, build your own custom solution to bypass that. That is out of scope for this design.
+
+The main question asked in this design is:
+
+"How could the host evade censorship, have resilience & metadata privacy, while minimizing gas fees & costs?" 
+
+This is a similar type of questions in the paper: **Leveraging Bitcoin Testnet for Bidirectional Botnet Command and Control Systems.**
+
+How can the blockchain or smart contracts be abused by cybercriminals?
+
+What efforts do we have to call to counter these types of malicious behaviour on the network?
+
+How can we develop effective detection mechanisms?
+
+Or regulation implications such as:
+
+Will this cause a ban on smart contracts? Or a similar effect as Monero or Tornado Cash?
+
+And many more..
+
+----
+
+# Updates in design (in-progress)
 
 Upcoming protocol design update features (soon):
 - Dont include public key from the user, send signature to relay and with users signature for registration and relays signature (or message), send it to the RPC node. This will make sure the relays public key is only seen by the node.
