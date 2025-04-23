@@ -1,6 +1,10 @@
-# Project Sato - C2
+# Project Satō - C2
 
-This project is way too big for me to do it myself - so i thought to just release this design.
+This project is wayyy too big for me to do it myself - so i thought to just release this design and possibly get feedback. My main interests in the recent years and build up of knowledge has been in the areas mentioned in this design. I occasionally used ChatGPT to get feedback from and i tried to check and mark sure and only edit the design to what im sure of. Below is the result.
+
+Project name is Satō, from the anime Ajin. Satō is the antagonist and everytime he dies, he simply stands up again and continues the battle. Similar to how the design behaves - taking down the host/server doesn't guarantee the death of the command and control server.
+
+Disclaimer - obviously as there is no code yet, there is not much to say regarding that. However, make sure to use this knowledge in ethical/research purposes only. As my only goal was to continue on the latest academic papers for ethical and research purposes only.
 
 # Overview
 
