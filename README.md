@@ -132,5 +132,6 @@ Upcoming protocol design update features (soon):
 
 
 -------
-Inspired by https://github.com/jonas089/cipher-poll 
-Papers mentioning this type of method more in detail - https://arxiv.org/pdf/2006.06036
+# Credits/inspiration
+- Inspired by https://github.com/jonas089/cipher-poll 
+- Papers mentioning this type of method more in detail - https://arxiv.org/pdf/2006.06036
