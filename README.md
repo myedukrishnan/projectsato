@@ -1,5 +1,4 @@
-# projectsato
-Project Sato - C2
+# Project Sato - C2
 
 This project is way too big for me to do it myself - so i thought to just release this design.
 
