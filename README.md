@@ -6,6 +6,11 @@ Project name is Satō, from the anime Ajin. Satō is the antagonist and everytim
 
 Disclaimer - obviously as there is no code yet, there is not much to say regarding that. However, make sure to use this knowledge in ethical/research purposes only. As my only goal was to continue on the latest academic papers for ethical and research purposes only.
 
+# Architecture Diagram 
+
+![project-sato](https://github.com/user-attachments/assets/87438c8c-24c5-4f8f-89bc-d2b334becc31)
+
+
 # Overview
 
 The smart contract has only two/three return functions:
