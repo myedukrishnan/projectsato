@@ -142,7 +142,7 @@ Limitations:
   
 # Threat model & OPSEC
 
-There are many ways to skin a cat. This is only one of them. No design covers every use case. Adjust your threat model & opsec where necessary. For example, if your company doesn't accept Tor connections at all - then you will have to get creative, build your own custom solution to bypass that. That is out of scope for this design.
+There are many ways to skin a cat. This is only one of them. No design covers every use case. Adjust your threat model & opsec where necessary.
 
 The main question asked in this design is:
 
