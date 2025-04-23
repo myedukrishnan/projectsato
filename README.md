@@ -129,3 +129,8 @@ Limitations:
 Upcoming protocol design update features (soon):
 - Dont include public key from the user, send signature to relay and with users signature for registration and relays signature (or message), send it to the RPC node. This will make sure the relays public key is only seen by the node.
 - Clients send signatures to the relay, from there they get in a batch (mixed with dummy registrations), then the contract checks whether its real or dummy, slight delay in seconds, and it inserts it into the merkle tree, and then updates the merkle root only once (also saving gas fees)
+
+
+-------
+Inspired by https://github.com/jonas089/cipher-poll 
+Papers mentioning this type of method more in detail - https://arxiv.org/pdf/2006.06036
