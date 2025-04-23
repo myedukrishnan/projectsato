@@ -2,6 +2,8 @@
 
 This project is way too big for me to do it myself - so i thought to just release this design.
 
+# Overview
+
 The smart contract has only two/three return functions:
 - Snapshot of the merkle tree to save for the client 
 - Insert/update .onion address
@@ -38,7 +40,7 @@ Note: C2 server is behind Tor and hosted with the official opsec recommendations
 
 # Flow of the protocol
 
-Phase 1 – Your Software (user side)
+## Phase 1 – Your Software (user side)
 - App is available on users device
 - LOCALLY: The app:
     - Generates a wallet
@@ -60,7 +62,7 @@ Phase 1 – Your Software (user side)
         -   “signedTransaction”: “…”
         - }
 
-Phase 2 – Transaction Relay Onion Website (backend)
+## Phase 2 – Transaction Relay Onion Website (backend)
 - Website receives POST request at Transaction Relay:
     - Checklist of instructions transaction:
         - Does this transaction send to the correct contract address?
@@ -69,7 +71,7 @@ Phase 2 – Transaction Relay Onion Website (backend)
         - If it is all YES -> Sign!
 - Send relaySignedTransaction to RPC node.
 
-Phase 3 - Solidity Smart contract
+## Phase 3 - Solidity Smart contract
 - Hash of the Nullifier and Public Key is inserted into the Merkle tree
 - Once the user’s Hash of Nullifier and Public Key is inserted into the Merkle tree, the Merkle tree’s root is calculated, and this becomes a snapshot of the tree at that point in time.
 - This snapshot (the Merkle root) is returned to the user. It essentially represents the entire state of the tree at the time of their registration.
@@ -80,7 +82,7 @@ Phase 3 - Solidity Smart contract
     - Once the ZKP is verified, the contract allows the verified user to access the string.
     - In order to do this, the client needs a listener and the contract needs to emit an event.
 
-Phase 4 - Post-quantum secure communications between Onion C2 & clients:
+## Phase 4 - Post-quantum secure communications between Onion C2 & clients:
 - Kyber, Dilithium, AES-256 encrypted communications
 - The malware has logic that looks for specific conditions or patterns in the server's response in order to be executed
 - Only the host can send commands from x onion address (verified from the smart contract) with:
@@ -101,6 +103,7 @@ Phase 4 - Post-quantum secure communications between Onion C2 & clients:
     - spam_score -= decay_rate * (now - last_seen)
 
 -----------------
+# Advantages & Limitations
 Advantages:
 - Censorship resistance through smart contracts & modular clients
 - Post-quantum secure C2 communications
